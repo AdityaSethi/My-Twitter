@@ -1,4 +1,2 @@
-My-Twitter
-==========
-
-Connecting people using sails.js
+# activityOverload
+### a Sails application

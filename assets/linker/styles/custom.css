@@ -1,0 +1,13 @@
+.margin{
+	margin-top: 90px;
+}
+
+.form-group{
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+.error{
+	color: red;
+}
