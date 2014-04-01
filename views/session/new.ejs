@@ -1,0 +1,24 @@
+<div class='container margin'>
+	<form action='/session/create' class='form-signin' method='POST'>
+		<h2>Please Sign in...</h2>
+		<% if (flash && flash.err) { %>
+			<div class='error'>Please make sure that you enter all fields and valid ones</h1></div>
+		<% } %>
+		<div class="form-group">
+	    <div class="col-md-12">
+				<input type='text' class='form-control' placeholder='Email address' name='email'>
+			</div>
+		</div>
+		<div class="form-group">
+	    <div class="col-md-12">
+				<input type='password' class='form-control' placeholder='Password' name='password'>
+			</div>
+		</div>
+		<div class="form-group">
+	    <div class="col-md-12">
+				<input type='submit' class='btn btn-lg btn-primary btn-block' value='Sign in'>
+			</div>
+		</div>
+		<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+	</form>
+</div>	

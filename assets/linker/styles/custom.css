@@ -11,3 +11,9 @@
 .error{
 	color: red;
 }
+
+.form-signin{
+	width: 400px;
+	margin: auto;
+	padding: 30px;
+}
