@@ -25,6 +25,11 @@ module.exports = {
    create: function (req, res) {
     
     // Send a JSON response
+    // Tweet.create({
+    //   tweetBy: req.user
+    // })
+    console.log(req.session.user)
+
     return res.json({
       hello: 'world'
     });

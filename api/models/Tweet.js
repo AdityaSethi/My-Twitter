@@ -10,9 +10,12 @@ module.exports = {
 
   attributes: {
   	
-  	/* e.g.
-  	nickname: 'string'
-  	*/
+  	tweetBy: 'STRING', //User name | userid. eg: Pinakin Mistry | pinakinmistry
+  	createdAt: 'DATE',
+  	tweetText: {
+  		type: 'STRING',
+  		maxLength: 140
+  	}
     
   }
 
