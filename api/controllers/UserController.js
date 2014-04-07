@@ -40,7 +40,13 @@ module.exports = {
   		
   		//res.json(user);
   		//req.session.flash = {}
-      res.redirect('/user/show/'+user.id);
+      else {
+        console.log('inside create');
+        req.session.authenticated = true;
+        console.log(req.session.authenticated);
+        req.session.user = user;
+        res.redirect('/user/show/'+user.id);
+     }
   	});
   },
 
@@ -55,7 +61,10 @@ module.exports = {
   },
 
   index: function (req, res, next){
-    if (req.session.authenticated == true) {
+    console.log('inside index')
+    console.log(req.session.authenticated)
+     if (req.session.authenticated == true) {
+      
       User.find(function foundUsers(err, users){
         if(err) return next(err);
         res.view({

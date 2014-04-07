@@ -5,7 +5,7 @@
  * @description	:: Contains logic for handling requests.
  */
 
-var bcrypt = require('bcrypt');
+//var bcrypt = require('bcrypt');
 
 module.exports = {
 
@@ -118,6 +118,8 @@ module.exports = {
             	console.log(usr.name)
                 var hasher = require("password-hash");
                 if (hasher.verify(password, usr.password)) {
+                	req.session.authenticated = true;
+                	console.log(req.session.authenticated);
                     req.session.user = usr;
                     res.redirect('/user/show/' + usr.id);
                     // res.send(usr);

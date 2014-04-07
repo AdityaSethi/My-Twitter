@@ -6,7 +6,7 @@
  * @docs		:: http://sailsjs.org/#!documentation/models
  */
 
-var bcrypt = require('bcrypt');
+//var bcrypt = require('bcrypt');
 
 module.exports = {
 
@@ -30,7 +30,7 @@ module.exports = {
   	},
   	password:{
   		type: 'string'
-  	},
+  	}
 
   	// 'toJSON' : function () {
   	// 	var obj = this.toObject();
@@ -40,36 +40,36 @@ module.exports = {
   	// 	return obj;
   	// },
 
-    beforeCreate: function (values, next) {
-    var bcrypt = require('bcrypt');
-    // This checks to make sure the password and password confirmation match before creating record
-    // console.log('=========================================')
-    // if (!values.password) {
-    //   return next({err: ["Password doesn't match password confirmation."]});
-    // }
+    // beforeCreate: function (values, next) {
+    // var bcrypt = require('bcrypt');
+    // // This checks to make sure the password and password confirmation match before creating record
+    // // console.log('=========================================')
+    // // if (!values.password) {
+    // //   return next({err: ["Password doesn't match password confirmation."]});
+    // // }
 
-    // bcrypt.hash(values.password, 10, function passwordEncrypted(err, encryptedPassword) {
+    // // bcrypt.hash(values.password, 10, function passwordEncrypted(err, encryptedPassword) {
+    // //   if (err) return next(err);
+    // //   values.encryptedPassword = encryptedPassword;
+    // //   // values.online= true;
+    // //   console.log('=========================================')
+    // //   console.log(encryptedPassword)
+    // //   next();
+    // // });
+
+    //  bcrypt.genSalt(10, function(err, salt) {
     //   if (err) return next(err);
-    //   values.encryptedPassword = encryptedPassword;
-    //   // values.online= true;
-    //   console.log('=========================================')
-    //   console.log(encryptedPassword)
-    //   next();
-    // });
 
-     bcrypt.genSalt(10, function(err, salt) {
-      if (err) return next(err);
-
-      bcrypt.hash(values.encryptedPassword, salt, function(err, hash) {
-        if (err) return next(err);
+    //   bcrypt.hash(values.encryptedPassword, salt, function(err, hash) {
+    //     if (err) return next(err);
         
-        values.encryptedPassword = hash;
-        console.log(hash);
-        console.log('inside create')
-        next();
-      });
-    });
-  }
+    //     values.encryptedPassword = hash;
+    //     console.log(hash);
+    //     console.log('inside create')
+    //     next();
+    //   });
+    // });
+  // }
     
   }
 
