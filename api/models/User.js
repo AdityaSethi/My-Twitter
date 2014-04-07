@@ -6,9 +6,9 @@
  * @docs		:: http://sailsjs.org/#!documentation/models
  */
 
-module.exports = {
+var bcrypt = require('bcrypt');
 
-	schema : true,
+module.exports = {
 
   attributes: {
   	
@@ -20,18 +20,17 @@ module.exports = {
   	},
   	sex: {
   		type: 'string',
-  		required: true
+  		required: false
   	},
   	email: {
   		type: 'string',
   		email: true,
-  		required: true,
+  		required: false,
   		unique: true
   	},
-  	encryptedPassword:{
+  	password:{
   		type: 'string'
-  	}
-  	//,
+  	},
 
   	// 'toJSON' : function () {
   	// 	var obj = this.toObject();
@@ -39,7 +38,38 @@ module.exports = {
   	// 	delete obj.password;
   	// 	delete obj._csrf;
   	// 	return obj;
-  	// }
+  	// },
+
+    beforeCreate: function (values, next) {
+    var bcrypt = require('bcrypt');
+    // This checks to make sure the password and password confirmation match before creating record
+    // console.log('=========================================')
+    // if (!values.password) {
+    //   return next({err: ["Password doesn't match password confirmation."]});
+    // }
+
+    // bcrypt.hash(values.password, 10, function passwordEncrypted(err, encryptedPassword) {
+    //   if (err) return next(err);
+    //   values.encryptedPassword = encryptedPassword;
+    //   // values.online= true;
+    //   console.log('=========================================')
+    //   console.log(encryptedPassword)
+    //   next();
+    // });
+
+     bcrypt.genSalt(10, function(err, salt) {
+      if (err) return next(err);
+
+      bcrypt.hash(values.encryptedPassword, salt, function(err, hash) {
+        if (err) return next(err);
+        
+        values.encryptedPassword = hash;
+        console.log(hash);
+        console.log('inside create')
+        next();
+      });
+    });
+  }
     
   }
 
