@@ -20,7 +20,8 @@ module.exports = {
   	},
     userid: {
       type: 'string',
-      required: true
+      required: true,
+      unique:true
     },
   	sex: {
   		type: 'string',
