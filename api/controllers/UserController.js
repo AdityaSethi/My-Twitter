@@ -22,7 +22,14 @@ module.exports = {
   },
 
   'create' : function (req, res, next){
-  	User.create(req.params.all(), function userCreated(err, user){
+    var name = req.param("name");
+    var password = req.param("password");
+    var email = req.param("email");
+    var sex = req.param("sex");
+    var hasher = require("password-hash");
+    password = hasher.generate(password);
+    
+  	User.create({name: name, password: password, email: email, sex: sex}, function userCreated(err, user){
   		
   		if(err) {
   			req.session.flash = {
@@ -33,7 +40,13 @@ module.exports = {
   		
   		//res.json(user);
   		//req.session.flash = {}
-      res.redirect('/user/show/'+user.id);
+      else {
+        console.log('inside create');
+        req.session.authenticated = true;
+        console.log(req.session.authenticated);
+        req.session.user = user;
+        res.redirect('/user/show/'+user.id);
+     }
   	});
   },
 
@@ -48,12 +61,20 @@ module.exports = {
   },
 
   index: function (req, res, next){
-    User.find(function foundUsers(err, users){
-      if(err) return next(err);
-      res.view({
-        users: users
+    console.log('inside index')
+    console.log(req.session.authenticated)
+     if (req.session.authenticated == true) {
+      
+      User.find(function foundUsers(err, users){
+        if(err) return next(err);
+        res.view({
+          users: users
+        })
       })
-    })
+    }
+    else{
+      res.redirect('session/new');
+    }  
   },
 
   edit : function (req, res, next){
