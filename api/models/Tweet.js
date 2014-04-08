@@ -7,9 +7,10 @@
  */
 
 module.exports = {
+	schema : true,
 
   attributes: {
-  	
+  	schema: true,
   	tweetBy: 'STRING', //User name | userid. eg: Pinakin Mistry | pinakinmistry
   	createdAt: 'DATE',
   	tweetText: {

@@ -16,24 +16,63 @@
  */
 
 module.exports = {
-    
-  
+
+  'new' : function (req, res) {
+    res.view();
+  },
+
+  'create' : function (req, res, next){
+    Tweet.create(req.params.all(), function tweetCreated(err, tweet){
+      console.log(req.session.user)
+      if(err) {
+        req.session.flash = {
+          err: err
+        }
+        return res.redirect('tweet/new')
+      }
+      
+      //res.json(user);
+      //req.session.flash = {}
+      res.redirect('/tweet/show/'+tweet.id);
+      console.log('new tweet created')
+    });
+  },
+
+  'show' : function (req, res, next){
+    Tweet.findOne(req.param('id'), function foundUser(err, tweet) {
+      if(err)  return next(err);
+      if(!tweet) return next();
+      res.view({
+        tweet: tweet
+      });
+    })
+  },
+
+  index: function (req, res, next){
+    Tweet.find(function foundTweets(err, tweets){
+      if(err) return next(err);
+      res.view({
+        tweets: tweets
+      })
+    })
+  },
+
   /**
    * Action blueprints:
    *    `/tweet/create`
    */
-   create: function (req, res) {
+  //  create: function (req, res) {
     
-    // Send a JSON response
-    // Tweet.create({
-    //   tweetBy: req.user
-    // })
-    console.log(req.session.user)
+  //   // Send a JSON response
+  //   // Tweet.create({
+  //   //   tweetBy: req.user
+  //   // })
+  //   console.log(req.session.user)
 
-    return res.json({
-      hello: 'world'
-    });
-  },
+  //   return res.json({
+  //     hello: 'world'
+  //   });
+  // },
 
 
   /**

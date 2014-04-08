@@ -1,0 +1,28 @@
+<div class='container margin'>
+  <form role="form" action="/tweet/create" method="POST">
+    
+    <% if(flash && flash.err) { %>
+      <div class="error"><h4> Please fill the right details </h4></div>
+    <%}%>
+
+    <div class="form-group">
+      <label for="tweetText" class="col-md-2">
+        Name:
+      </label>
+      <div class="col-md-10">
+        <input type="textarea" class="form-control" name="tweetText" placeholder="Enter tweet">
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-10">
+        <button type="submit" class="btn btn-info">
+          Tweet
+        </button>
+      </div>
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    </div>
+  </form>
+</div>
