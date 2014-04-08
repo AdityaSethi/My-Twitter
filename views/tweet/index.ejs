@@ -2,12 +2,12 @@
 	<h3> tweets </h3>
 	<table class='table'>
 		<tr>
-			<th>ID</th>
+			<th>User</th>
 			<th>Tweet</th>
 		</tr>
 		<% _.each(tweets, function(tweet){%>
 			<tr data-id=<%= tweet.id %> data-model='tweet'>
-				<td><%= tweet.id%></td>
+				<td><%= tweet.tweetBy%></td>
 				<td><%= tweet.tweetText%></td>					
 			</tr>
 		<% }) %>

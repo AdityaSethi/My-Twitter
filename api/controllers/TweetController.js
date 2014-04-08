@@ -22,15 +22,18 @@ module.exports = {
   },
 
   'create' : function (req, res, next){
-    Tweet.create(req.params.all(), function tweetCreated(err, tweet){
-      console.log(req.session.user)
+    console.log(req.params.all());
+    var params = req.params.all();
+    params.tweetBy = req.session.user.name + ' @' + req.session.user.userid;
+    Tweet.create(params, function tweetCreated(err, tweet){
+      console.log('Tweet by', req.session.user.name, '@' + req.session.user.userid)
       if(err) {
         req.session.flash = {
           err: err
         }
         return res.redirect('tweet/new')
       }
-      
+      //tweet.tweetBy = req.session.user.name + ' @' + req.session.user.userid;
       //res.json(user);
       //req.session.flash = {}
       res.redirect('/tweet/show/'+tweet.id);

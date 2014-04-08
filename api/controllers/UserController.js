@@ -23,13 +23,14 @@ module.exports = {
 
   'create' : function (req, res, next){
     var name = req.param("name");
+    var userid = req.param("userid");
     var password = req.param("password");
     var email = req.param("email");
     var sex = req.param("sex");
     var hasher = require("password-hash");
     password = hasher.generate(password);
     
-  	User.create({name: name, password: password, email: email, sex: sex}, function userCreated(err, user){
+  	User.create({name: name, userid: userid, password: password, email: email, sex: sex}, function userCreated(err, user){
   		
   		if(err) {
   			req.session.flash = {

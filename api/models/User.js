@@ -18,6 +18,10 @@ module.exports = {
   		type: 'string',
   		required: true
   	},
+    userid: {
+      type: 'string',
+      required: true
+    },
   	sex: {
   		type: 'string',
   		required: false

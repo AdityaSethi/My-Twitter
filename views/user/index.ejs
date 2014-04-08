@@ -4,6 +4,7 @@
 		<tr>
 			<th>ID</th>
 			<th>User</th>
+			<th>User ID</th>
 			<th>Sex</th>
 			<th>Email</th>
 			<th></th>
@@ -14,6 +15,7 @@
 			<tr data-id=<%= user.id %> data-model='user'>
 				<td><%= user.id%></td>
 				<td><%= user.name%></td>
+				<td><%= user.userid%></td>
 				<td><%= user.sex%></td>
 				<td><%= user.email%></td>
 				<td><a href='/user/show/<%= user.id %>' class='brn btn-sm btn-primary'>Show</a></td>
