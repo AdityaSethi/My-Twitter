@@ -38,6 +38,28 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class='container'>
         <a href="/" class='navbar-brand'>My Twitter</a>
+      
+        <div class='pull-right col-md-8 margin-top'>
+          <% if(req.session.authenticated != true) { %>
+          <form action='/session/login' method='POST'>
+            <div class="col-md-5">
+              <input type='text' class='form-control' placeholder='Email address' name='email'>
+            </div>
+            <div class="col-md-5">
+              <input type='password' class='form-control' placeholder='Password' name='password'>
+            </div>
+            <div class="col-md-2">
+              <input type='submit' class='btn btn-sm btn-primary btn-block' value='Sign in'>
+            </div>
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+          </form>
+          <% } %>
+          <% if(req.session.authenticated == true) { %>
+          <div class='col-md-2 pull-right'>
+            <a href="/session/destroy" class='btn btn-sm btn-danger btn-block'>Logout</a>
+          </div>  
+          <% } %>
+        </div>
       </div>
     </div>
 
