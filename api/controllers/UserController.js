@@ -55,9 +55,16 @@ module.exports = {
     User.findOne(req.param('id'), function foundUser(err, user) {
       if(err)  return next(err);
       if(!user) return next();
-      res.view({
-        user: user
-      });
+      Tweet.find(function foundTweets(err, tweets){
+        if(err) return next(err);
+        res.view({
+          user: user,
+          tweets: tweets
+        })
+      })
+      // res.view({
+      //   user: user
+      // });
     })
   },
 

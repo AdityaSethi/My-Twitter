@@ -22,7 +22,6 @@ module.exports = {
   },
 
   'create' : function (req, res, next){
-    console.log(req.params.all());
     var params = req.params.all();
     params.tweetBy = req.session.user.name + ' @' + req.session.user.userid;
     Tweet.create(params, function tweetCreated(err, tweet){
@@ -33,7 +32,6 @@ module.exports = {
         }
         return res.redirect('tweet/new')
       }
-      //tweet.tweetBy = req.session.user.name + ' @' + req.session.user.userid;
       //res.json(user);
       //req.session.flash = {}
       res.redirect('/tweet/show/'+tweet.id);

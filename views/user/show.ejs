@@ -4,3 +4,19 @@
 	<h3>Contact: <%= user.email %></h3>
 	<a href='/user/edit/<%= user.id %>' class='brn btn-sm btn-warning'>Edit</a>
 </div>
+
+<div class='container margin'>
+	<h3> tweets </h3>
+	<table class='table'>
+		<tr>
+			<th>User</th>
+			<th>Tweet</th>
+		</tr>
+		<% _.each(tweets, function(tweet){%>
+			<tr data-id=<%= tweet.id %> data-model='tweet'>
+				<td><%= tweet.tweetBy%></td>
+				<td><%= tweet.tweetText%></td>					
+			</tr>
+		<% }) %>
+	</table>				
+</div>
