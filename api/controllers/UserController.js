@@ -67,6 +67,7 @@ module.exports = {
       if(!user) return next();
       Tweet.find()
         .where ({userid: user.following})
+        .sort ('createdAt DESC')
         .exec(function (err, tweets){
           console.log('in show');
           console.log(tweets);
