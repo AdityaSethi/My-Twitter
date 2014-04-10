@@ -174,18 +174,6 @@
           });
         });
 
-        //Followers list
-         $('#followers').click(function(){
-          var userid = $(this).attr('data-id');
-          $.ajax({
-            type: 'GET',
-            url: '/user/showfollowers',
-            data: {id: userid}
-          }).done(function(data) {
-            console.log(data)
-          });
-        });
-
       });//End of $
     </script>
   </body>

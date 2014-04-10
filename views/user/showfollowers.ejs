@@ -1,0 +1,11 @@
+<div class='col-md-12'>
+	<h2> Tweets </h2>
+	<table class='table'>
+		<% _.each(followers, function(follower){%>
+			<tr data-id=<%= follower.id %> data-model='follower'>
+				<b><%= follower.name %></b>
+				<hr>
+			</tr>
+		<% }) %>
+	</table>				
+</div>
