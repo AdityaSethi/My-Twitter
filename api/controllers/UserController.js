@@ -51,6 +51,16 @@ module.exports = {
   	});
   },
 
+  home : function(req, res, next){
+    if(req.session.authenticated == true){
+      user = req.session.user;
+      res.redirect('/user/show/'+user.id)
+    }
+    else{
+      res.redirect('/');
+    }
+  },
+
   'show' : function (req, res, next){
     User.findOne(req.param('id'), function foundUser(err, user) {
       if(err)  return next(err);
