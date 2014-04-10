@@ -121,12 +121,21 @@ module.exports = {
     console.log('inside index')
     console.log(req.session.authenticated)
      if (req.session.authenticated == true) {
-      
       User.find(function foundUsers(err, users){
         if(err) return next(err);
-        res.view({
-          users: users
-        })
+        User.findOneById(req.session.user.id, function(err, me){
+          for(var i=0; i < users.length; i++){
+            if(_.indexOf(me.following, users[i].id) != -1) {
+              console.log('I am following', users[i].name);
+              users[i].followedByMe = true;
+            }
+          };
+          console.log(users)
+          res.view({
+            users: users
+          })
+        });
+        
       })
     }
     else{
