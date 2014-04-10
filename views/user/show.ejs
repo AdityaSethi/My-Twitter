@@ -1,21 +1,17 @@
 <div class='container margin'>
-	<h1><%= user.name %></h1>
-	<hr>
-	<h3>Contact: <%= user.email %></h3>
-	<a href='/user/edit/<%= user.id %>' class='brn btn-sm btn-warning'>Edit</a>
+	<h2><a href='/user/edit/<%= user.id %>' class='brn'><%= user.name %></a></h2>
+	<h4>@<%= user.userid %></h4>
+	TWEETS, FOLLOWING, FOLLOWERS coming soon!
 </div>
-
-<div class='container margin'>
-	<h3> tweets </h3>
+<div class='container'>
+	<h2> Tweets </h2>
 	<table class='table'>
-		<tr>
-			<th>User</th>
-			<th>Tweet</th>
-		</tr>
 		<% _.each(tweets, function(tweet){%>
 			<tr data-id=<%= tweet.id %> data-model='tweet'>
-				<td><%= tweet.tweetBy%></td>
-				<td><%= tweet.tweetText%></td>					
+				<b><%= tweet.tweetBy ? tweet.tweetBy.split('@')[0] : tweet.tweetBy%></b>
+				@<%= tweet.tweetBy ? tweet.tweetBy.split('@')[1] : tweet.tweetBy%><br>
+				<%= tweet.tweetText%>
+				<hr>
 			</tr>
 		<% }) %>
 	</table>				

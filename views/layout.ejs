@@ -55,9 +55,19 @@
           </form>
           <% } %>
           <% if(req.session.authenticated == true) { %>
+
           <div class='col-md-2 pull-right'>
             <a href="/session/destroy" class='btn btn-sm btn-danger btn-block'>Logout</a>
-          </div>  
+          </div>
+          <form action='/user/search' method='GET'>
+            <div class="col-md-1 pull-right">
+              <input type='submit' class='btn btn-sm btn-primary btn-block' value='Go'>
+            </div>
+            <input type="text" class='col-md-4 pull-right' 
+              name='name' placeholder="Search">
+            </input>
+          </form>
+
           <% } %>
         </div>
       </div>

@@ -62,9 +62,17 @@ module.exports = {
           tweets: tweets
         })
       })
-      // res.view({
-      //   user: user
-      // });
+    })
+  },
+  'searchUser' : function (req, res, next){
+    User.findOne(req.param('name'), function foundUser(err, user) {
+      if(err)  return next(err);
+      if(!user) return next();
+      console.log('user found')
+      console.log(user);
+      res.next({
+        userFound: user
+      });
     })
   },
 
