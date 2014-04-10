@@ -21,3 +21,12 @@
 .margin-top{
 	margin-top: 10px;
 }
+
+#usersSearchResult {
+	width: 400px;
+	border: 2px solid #aaa;
+	border-radius: 5px;
+	background: #fff;
+	float: right;
+	//display: none;
+}

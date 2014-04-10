@@ -64,14 +64,14 @@ module.exports = {
       })
     })
   },
-  'searchUser' : function (req, res, next){
-    User.findOne(req.param('name'), function foundUser(err, user) {
+  'search' : function (req, res, next){
+    User.findOneByName(req.param('name'), function foundUser(err, users) {
       if(err)  return next(err);
-      if(!user) return next();
+      if(!users) return next();
       console.log('user found')
-      console.log(user);
-      res.next({
-        userFound: user
+      console.log(users);
+      res.json({
+        users: users
       });
     })
   },

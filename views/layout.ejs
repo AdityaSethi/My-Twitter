@@ -59,14 +59,15 @@
           <div class='col-md-2 pull-right'>
             <a href="/session/destroy" class='btn btn-sm btn-danger btn-block'>Logout</a>
           </div>
-          <form action='/user/search' method='GET'>
+          <!-- <form action='/user/search' method='GET'>
             <div class="col-md-1 pull-right">
               <input type='submit' class='btn btn-sm btn-primary btn-block' value='Go'>
-            </div>
-            <input type="text" class='col-md-4 pull-right' 
+            </div> -->
+            <input id="searchUser" type="text" class='col-md-4 pull-right' 
               name='name' placeholder="Search">
             </input>
-          </form>
+            <div id="usersSearchResult"></div>
+          <!-- </form> -->
 
           <% } %>
         </div>
@@ -137,5 +138,24 @@
     <script src="/linker/js/jquery.min.js"></script>
     <script src="/linker/js/underscore.js"></script>
     <!--SCRIPTS END-->
+
+    <!--INLINE SCRIPT -->
+    <script>
+      $(function(){
+        $('#searchUser').on('change', function(){
+          var searchUser = $(this).val();
+          $.ajax({
+            type: 'GET',
+            url: '/user/search',
+            data: {name: searchUser}
+          }).done(function(data) {
+            var users = data.users;
+            console.log(data);
+            $('#usersSearchResult').html('<b>'+users.name+'</b> @'+users.userid+'<br>'+users.email);
+            $('#usersSearchResult').css('display', 'block');
+          });
+        });
+      });
+    </script>
   </body>
 </html>

@@ -34,7 +34,9 @@ module.exports.routes = {
   // (This would also work if you had a file at: `/views/home.ejs`)
   '/': {
     view: 'static/index'
-  }
+  },
+
+  'get /user/search': 'UserController.search'
 
   /*
   // But what if you want your home page to display
