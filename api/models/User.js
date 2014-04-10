@@ -35,9 +35,18 @@ module.exports = {
   	},
   	password:{
   		type: 'string'
-  	}
+  	},
+    following: {
+      type: 'array'
+    },
+    followers: {
+      type: 'array'
+    },
+    tweetCount: {
+      type: 'integer'
+    }
 
-  	// 'toJSON' : function () {
+  	// 'array' : function () {
   	// 	var obj = this.toObject();
   	// 	delete obj.encryptedPassword;
   	// 	delete obj.password;

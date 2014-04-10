@@ -30,7 +30,7 @@ module.exports = {
     var hasher = require("password-hash");
     password = hasher.generate(password);
     
-  	User.create({name: name, userid: userid, password: password, email: email, sex: sex}, function userCreated(err, user){
+  	User.create({name: name, userid: userid, password: password, email: email, sex: sex, following: [], followers: [], tweetCount: 0}, function userCreated(err, user){
   		
   		if(err) {
   			req.session.flash = {
@@ -74,6 +74,37 @@ module.exports = {
         users: users
       });
     })
+  },
+
+  'follow' : function (req, res, next){
+    var followingId = req.param('id');
+    User.findOneById(followingId, function userUpdate(err, user){
+      if(err)  return next(err);
+      if(!user) return next();
+      console.log('Following user ...')
+      console.log(user);
+      var myId = req.session.user.id;
+      user.followers.push(myId);
+      user.save(function(err){
+        console.log(err);
+        if(err) return next(err);
+        console.log("Added myself in followinger's followers' list. Adding followinger's is my following list...");
+        User.findOneById(myId, function userUpdate(err, user){
+          if(err)  return next(err);
+          if(!user) return next();
+          console.log('Updaing my following list ...');
+          user.following.push(followingId);
+          user.save(function(err){
+            console.log(err);
+            if(err) return next(err);
+            console.log("Added myself in followinger's followers' list. Adding followinger's is my following list...");
+          });
+        });
+      });
+      res.json({
+        message: 'following the selected user'
+      }); 
+    });
   },
 
   index: function (req, res, next){

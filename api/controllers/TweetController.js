@@ -30,10 +30,20 @@ module.exports = {
         req.session.flash = {
           err: err
         }
-        return res.redirect('tweet/new')
+        return res.redirect('tweet/new');
       }
       //res.json(user);
       //req.session.flash = {}
+      User.findOneById(req.session.user.id, function foundUser(err, user){
+        if(err) next(err);
+        if(!user) next();
+        user.tweetCount++;
+        user.save(function(err){
+          console.log(err);
+          if(err) return next(err);
+          console.log("tweet count upped by 1.");
+        });
+      });
       res.redirect('/tweet/show/'+tweet.id);
       console.log('new tweet created')
     });

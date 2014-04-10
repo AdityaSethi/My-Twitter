@@ -142,6 +142,8 @@
     <!--INLINE SCRIPT -->
     <script>
       $(function(){
+        
+        //Search User
         $('#searchUser').on('change', function(){
           var searchUser = $(this).val();
           $.ajax({
@@ -155,7 +157,22 @@
             $('#usersSearchResult').css('display', 'block');
           });
         });
-      });
+
+        //Follow User
+        $('.followUser').click(function(){
+          var userid = $(this).attr('data-userid'),
+            $button = $(this);
+          $.ajax({
+            type: 'GET',
+            url: '/user/follow',
+            data: {id: userid}
+          }).done(function(data) {
+            console.log(data.message);
+            $button.html('Following');
+          });
+        });
+
+      });//End of $
     </script>
   </body>
 </html>
