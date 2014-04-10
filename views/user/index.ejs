@@ -15,7 +15,11 @@
 				<td>
           <div class='followUser btn btn-med btn-primary btn-block'
           	data-userid=<%= user.id%> >
-          	Follow
+          	<% if(user.followedByMe) { %>
+	          	Following
+	          	<% } else { %>
+	          	Follow
+          	<% } %>
           </div>
         </td>
 			</tr>
