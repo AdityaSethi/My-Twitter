@@ -38,7 +38,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class='container'>
         <a href="/" class='navbar-brand'>My Twitter</a>
-      
+        <a href='/user/home' class='navbar-brand'>Home</a>
         <div class='pull-right col-md-8 margin-top'>
           <% if(req.session.authenticated != true) { %>
           <form action='/session/login' method='POST'>
