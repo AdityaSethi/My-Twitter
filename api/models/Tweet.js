@@ -11,7 +11,8 @@ module.exports = {
 
   attributes: {
   	schema: true,
-  	tweetBy: 'STRING', //User name @userid. eg: Pinakin Mistry @pinakinmistry
+    tweetBy: 'STRING', //User name @userid. eg: Pinakin Mistry @pinakinmistry
+    userid: 'STRING',
   	createdAt: 'DATE',
   	tweetText: {
   		type: 'STRING',

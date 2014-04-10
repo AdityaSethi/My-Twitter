@@ -24,6 +24,7 @@ module.exports = {
   'create' : function (req, res, next){
     var params = req.params.all();
     params.tweetBy = req.session.user.name + ' @' + req.session.user.userid;
+    params.userid = req.session.user.id;
     Tweet.create(params, function tweetCreated(err, tweet){
       console.log('Tweet by', req.session.user.name, '@' + req.session.user.userid)
       if(err) {
@@ -44,7 +45,7 @@ module.exports = {
           console.log("tweet count upped by 1.");
         });
       });
-      res.redirect('/user/show/'+user.id);
+      res.redirect('/user/show/'+req.session.user.id);
       console.log('new tweet created')
     });
   },

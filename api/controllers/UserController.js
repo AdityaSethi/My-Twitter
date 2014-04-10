@@ -65,8 +65,12 @@ module.exports = {
     User.findOne(req.param('id'), function foundUser(err, user) {
       if(err)  return next(err);
       if(!user) return next();
-      Tweet.find(function foundTweets(err, tweets){
-        if(err) return next(err);
+      Tweet.find()
+        .where ({userid: user.following})
+        .sort ('createdAt DESC')
+        .exec(function (err, tweets){
+          console.log('in show');
+          console.log(tweets);
         res.view({
           user: user,
           tweets: tweets
@@ -142,6 +146,10 @@ module.exports = {
             if(_.indexOf(me.following, users[i].id) != -1) {
               console.log('I am following', users[i].name);
               users[i].followedByMe = true;
+            }
+            //removing myself from users list as I dont wanna follow myself
+            if(users[i].id === me.id){
+              users.splice(i, 1);
             }
           };
           console.log(users)
