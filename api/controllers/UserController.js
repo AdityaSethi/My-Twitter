@@ -65,8 +65,11 @@ module.exports = {
     User.findOne(req.param('id'), function foundUser(err, user) {
       if(err)  return next(err);
       if(!user) return next();
-      Tweet.find(function foundTweets(err, tweets){
-        if(err) return next(err);
+      Tweet.find()
+        .where ({userid: user.following})
+        .exec(function (err, tweets){
+          console.log('in show');
+          console.log(tweets);
         res.view({
           user: user,
           tweets: tweets
