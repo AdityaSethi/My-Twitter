@@ -65,6 +65,8 @@ module.exports = {
     User.findOne(req.param('id'), function foundUser(err, user) {
       if(err)  return next(err);
       if(!user) return next();
+      //Adding self id in following list to see our own tweets
+      user.following.push(user.id);
       Tweet.find()
         .where ({userid: user.following})
         .sort ('createdAt DESC')
