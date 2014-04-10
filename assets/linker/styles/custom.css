@@ -38,3 +38,8 @@
 .handle{
 	margin-top: -10px;
 }
+
+.container-home{
+	height: 500px;
+	overflow: auto;
+}
