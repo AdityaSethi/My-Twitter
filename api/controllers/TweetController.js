@@ -44,7 +44,7 @@ module.exports = {
           console.log("tweet count upped by 1.");
         });
       });
-      res.redirect('/tweet/show/'+tweet.id);
+      res.redirect('/user/show/'+user.id);
       console.log('new tweet created')
     });
   },
