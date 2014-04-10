@@ -129,6 +129,10 @@ module.exports = {
               console.log('I am following', users[i].name);
               users[i].followedByMe = true;
             }
+            //removing myself from users list as I dont wanna follow myself
+            if(users[i].id === me.id){
+              users.splice(i, 1);
+            }
           };
           console.log(users)
           res.view({
