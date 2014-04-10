@@ -92,6 +92,33 @@ module.exports = {
     })
   },
 
+  showfollowers : function(req, res, next){
+    if(req.session.authenticated == true){
+      var me = req.session.user;
+        User.find()
+        .where ({id: me.followers})
+        .exec(function (err, followers){
+        res.view({
+          followers: followers
+        });
+      })
+    }
+  },
+
+  showfollowing : function(req, res, next){
+    if(req.session.authenticated == true){
+      var me = req.session.user;
+        User.find()
+        .where ({id: me.following})
+        .exec(function (err, followings){
+          console.log(followings)
+        res.view({
+          followings: followings
+        });
+      })
+    }
+  },
+
   'follow' : function (req, res, next){
     var followingId = req.param('id');
     User.findOneById(followingId, function userUpdate(err, user){
