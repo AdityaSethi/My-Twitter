@@ -86,6 +86,20 @@ module.exports = {
     })
   },
 
+  showfollowers : function(req, res, next){
+    if(req.session.authenticated == true){
+      var me = req.session.user;
+        User.find()
+        .where ({id: me.followers})
+        .exec(function (err, followers){
+          console.log('in show');
+        res.view({
+          followers: followers
+        });
+      })
+    }
+  },
+
   'follow' : function (req, res, next){
     var followingId = req.param('id');
     User.findOneById(followingId, function userUpdate(err, user){

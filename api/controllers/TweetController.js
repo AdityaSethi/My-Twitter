@@ -57,7 +57,7 @@ module.exports = {
         tweet: tweet
       });
     })
-  },
+  }, 
 
   index: function (req, res, next){
     Tweet.find(function foundTweets(err, tweets){
