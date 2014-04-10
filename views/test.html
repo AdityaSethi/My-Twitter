@@ -1,9 +1,24 @@
-<form action='session/create' method='post'>
-	<% if (flash && flash.err) { %>
-		<div class='error'><h1>Something is fishy here</h1></div>
-	<% } %>
-	<input type='text' class='form-control' placeholder='Email address' name='email'>
-	<input type='password' class='form-control' placeholder='Password' name='password'>
-	<input type='submit' class='btn btn-lg btn-primary btn-block' value='Sign in'>
-	<input type="hidden" name="_csrf" value="<%= _csrf %>" />
-</form>
+<div class='container margin'>
+	<div class='col-md-4'>
+		<div class='col-md-12'><a href=""><h2><%= user.name %></h2></a></div>
+		<div class='col-md-12 handle'><h4>@<%= user.userid %></h4></div>
+		<div class='col-md-12 info'>
+			<div class='col-md-4'>TWEETS <br> <b><%= user.tweetCount %></b> </div>
+			<div class='col-md-4'>FOLLOWING <b><%= user.following ? user.following.length : 0 %></b> </div>
+			<div class='col-md-4'>FOLLOWERS <b><%= user.followers ? user.followers.length : 0 %></b></div>
+		</div>
+	</div>
+	<div class='col-md-8'>
+		<h2> Tweets </h2>
+		<table class='table'>
+			<% _.each(tweets, function(tweet){%>
+				<tr data-id=<%= tweet.id %> data-model='tweet'>
+					<b><%= tweet.tweetBy ? tweet.tweetBy.split('@')[0] : tweet.tweetBy%></b>
+					@<%= tweet.tweetBy ? tweet.tweetBy.split('@')[1] : tweet.tweetBy%><br>
+					<%= tweet.tweetText%>
+					<hr>
+				</tr>
+			<% }) %>
+		</table>				
+	</div>
+</div>

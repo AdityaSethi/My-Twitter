@@ -23,10 +23,18 @@
 }
 
 #usersSearchResult {
-	width: 400px;
 	border: 2px solid #aaa;
 	border-radius: 5px;
 	background: #fff;
 	float: right;
-	//display: none;
+	position: absolute;
+	top: 24px;
+}
+
+.info{
+	padding-left: 0px;
+}
+
+.handle{
+	margin-top: -10px;
 }
