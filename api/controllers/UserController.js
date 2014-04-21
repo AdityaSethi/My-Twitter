@@ -46,6 +46,8 @@ module.exports = {
         req.session.authenticated = true;
         console.log(req.session.authenticated);
         req.session.user = user;
+        //Adding self id in following list to see our own tweets(need refactoring)
+        user.following.push(user.id);
         res.redirect('/user/show/'+user.id);
      }
   	});
@@ -66,7 +68,7 @@ module.exports = {
       if(err)  return next(err);
       if(!user) return next();
       //Adding self id in following list to see our own tweets
-      user.following.push(user.id);
+      // user.following.push(user.id);
       Tweet.find()
         .where ({userid: user.following})
         .sort ('createdAt DESC')

@@ -4,7 +4,7 @@
 		<div class='col-md-12 handle'><h4>@<%= user.userid %></h4></div>
 		<div class='col-md-12 info'>
 			<div class='col-md-4'>TWEETS <br> <b><%= user.tweetCount %></b> </div>
-			<div class='col-md-4'>FOLLOWING <a href='/user/showfollowing'><%= user.following ? user.following.length : 0 %></a></b> </div>
+			<div class='col-md-4'>FOLLOWING <a href='/user/showfollowing'><%= user.following ? (user.following.length-1) : 0 %></a></b> </div>
 			<div class='col-md-4'>FOLLOWERS <b><a href='/user/showfollowers'><%= user.followers ? user.followers.length : 0 %></a></b></div>
 		</div>
 		<div class='col-md-12'>
